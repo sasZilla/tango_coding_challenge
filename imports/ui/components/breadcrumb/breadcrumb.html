@@ -1,0 +1,15 @@
+<div class="breadcrumb" ng-if="breadcrumb.currState!='signUp'">
+  <ul class="nav">
+    <li ng-repeat="item in breadcrumb.data" ng-class="{'current' : item.state==breadcrumb.currState}">
+      <span class="stepName">
+        {{item.index}}<span class="stepDescription">. {{item.name}}</span>
+      </span>
+    </li>
+  </ul>
+  <button ng-click="breadcrumb.cancel()" type="submit" name="cancel">
+    <svg role="img" class=" iconSvg" title="Cancel" width="20" height="20">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/icons.svg#close"></use>
+    </svg>
+    Cancel
+  </button>
+</div>

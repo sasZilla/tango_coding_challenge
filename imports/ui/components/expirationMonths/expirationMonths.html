@@ -1,0 +1,8 @@
+<div class="fieldgroup halfWide">
+  <label for="card_expiry_month">Expiration date</label>
+  <div class="selectmenu">
+    <select name="card_expiry_month" id="expiry_month" ng-model="expirationMonths.value">
+      <option ng-repeat="expiratioMonth in expirationMonths.data" value="{{expiratioMonth.value}}">{{expiratioMonth.value}} - {{expiratioMonth.title}}</option>
+    </select>
+  </div>
+</div>

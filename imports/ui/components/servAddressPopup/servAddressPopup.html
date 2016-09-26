@@ -1,0 +1,34 @@
+<div class="modalBoxOverlay popup-overlay"></div>
+<div class="popup flowForm" id="modal-confirmAddress">
+  <button class="closeButton" type="button" ng-click="servAddressPopup.close()">
+    <svg class="iconSvg" height="16" title="Close" width="16">
+      <use xlink:href="/static/images/icons.svg#close" xmlns:xlink="http://www.w3.org/1999/xlink"></use>
+    </svg>
+  </button>
+  <div class="pageheader">
+    <h3>Please confirm your address</h3>
+    <h5>We couldn't verify this address. If you're sure it's correct, please continue.</h5>
+  </div>
+  <form>
+    <div class="fieldgroup fullWide readonly">
+      <label>Address</label>
+      <span class="field">{{servAddressPopup.address.address}}</span>
+    </div>
+    <div class="fieldgroup fullWide readonly">
+      <label>City</label>
+      <span class="field">{{servAddressPopup.address.city}}</span>
+    </div>
+    <div class="fieldgroup fullWide readonly">
+      <label>State</label>
+      <span class="field">{{servAddressPopup.address.countryState}}</span>
+    </div>
+    <div class="fieldgroup fullWide readonly">
+      <label>Zip code</label>
+      <span class="field">{{servAddressPopup.address.postalCode}}</span>
+    </div>
+    <div class="buttons">
+      <button type="submit" ng-click="servAddressPopup.submit(servAddressPopup.address)">Confirm</button>
+      <button name="cancel" type="button" ng-click="servAddressPopup.close()">This is not correct</button>
+    </div>
+  </form>
+</div>

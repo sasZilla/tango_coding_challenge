@@ -1,0 +1,132 @@
+<div class="wrapper flush order_step">
+  <div class="wrapperSection">
+    <h2 class="mainHeader">Create your Ting account</h2>
+    <p class="tagline">
+      Already have an account?
+      <button class="trigger" type="button" id="signinTrigger">Sign in instead.</button>
+    </p>
+    <form ng-submit="signUp.createUser(signUp.newUser)" id="form-signup" class="section" name="userForm" novalidate>
+      <div class="loginContainer">
+        <section class="formSection">
+          <fieldset>
+            <div class="fieldgroup halfWide sign-up">
+              <label for="firstName">First name</label>
+              <input type="text"
+                 name="firstName"
+                 ng-model="signUp.newUser.firstName"
+                 required />
+
+              <div ng-show='userForm.firstName.$dirty && userForm.firstName.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="userForm.firstName.$error.required">This field is required.</div>
+              </div>
+            </div>
+            <div class="fieldgroup halfWide sign-up">
+              <label for="lastName">Last name</label>
+              <input type="text"
+                name="lastName"
+                ng-model="signUp.newUser.lastName"
+                required />
+
+              <div ng-show='userForm.lastName.$dirty && userForm.lastName.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="userForm.lastName.$error.required">This field is required.</div>
+              </div>
+            </div>
+            <div class="clear"></div>
+
+            <div class="fieldgroup fullWide inline sign-up">
+              <label>
+                <input ng-model="signUp.newUser.accountType" type="checkbox" name="accountType" value="business">
+                This is a business account
+              </label>
+            </div>
+            <div class="fieldgroup fullWide sign-up" id="businessFieldGroup" ng-if="signUp.newUser.accountType" class="ng-hide">
+              <label for="businessName">Business name</label>
+              <input type="text"
+                name="businessName"
+                ng-model="signUp.newUser.businessName"
+                required />
+
+              <div ng-show='userForm.businessName.$dirty && userForm.businessName.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="userForm.businessName.$error.required">This field is required.</div>
+              </div>
+            </div>
+
+            <div class="fieldgroup halfWide sign-up">
+              <label for="phone">Contact number</label>
+              <input type="tel"
+                name="phone"
+                ng-model="signUp.newUser.phone"
+                ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
+                required />
+
+              <div ng-show='userForm.phone.$dirty && userForm.phone.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="userForm.phone.$error.required">This field is required.</div>
+                <div ng-show="userForm.phone.$error.pattern">Please enter a valid phone number. For example "123-123-4567"</div>
+              </div>
+            </div>
+
+            <div class="fieldgroup halfWide both">
+              <label for="email">Email</label>
+              <input type="email"
+                name="email"
+                ng-model="signUp.newUser.email"
+                class="emailField"
+                required />
+
+              <div ng-show='userForm.email.$dirty && userForm.email.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="userForm.email.$error.required">This field is required.</div>
+                <div ng-show="userForm.email.$error.email">Please enter a valid email</div>
+              </div>
+            </div>
+            <div class="clear"></div>
+            <div class="fieldgroup halfWide both">
+              <label for="password">Password</label>
+              <input type="password"
+                name="password"
+                ng-model="signUp.newUser.password"
+                ng-minlength="10"
+                required />
+
+              <div ng-show='userForm.password.$dirty && userForm.password.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="userForm.password.$error.required">This field is required.</div>
+                <div ng-show="userForm.password.$error.minlength">Please enter at least 10 characters.</div>
+              </div>
+            </div>
+
+            <div class="fieldgroup halfWide sign-up">
+              <label for="confirmPassword">Confirm password</label>
+              <input type="password"
+                name="confirmPassword"
+                ng-model="signUp.newUser.confirmPassword"
+                ng-pattern="{{signUp.newUser.password}}"
+                required />
+
+              <div ng-show='userForm.confirmPassword.$dirty && userForm.confirmPassword.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="userForm.confirmPassword.$error.required">This field is required.</div>
+                <div ng-show="userForm.confirmPassword.$error.pattern">Password confirmation required</div>
+              </div>
+            </div>
+
+            <label class="sign-up clear">Notifications</label>
+            <div class="fieldgroup fullWide sign-up  email_news">
+              <label class="checkbox">
+                <input ng-model="signUp.newUser.sendNews" type="checkbox" name="send_news">Send me Ting news
+              </label>
+              <label class="checkbox">
+                <input ng-model="signUp.newUser.sendDeviceAlerts" type="checkbox" name="send_device_alerts">Send me alerts about new devices
+              </label>
+              <label class="checkbox">
+                <input ng-model="signUp.newUser.sendNps" type="checkbox" name="send_nps">Send me Ting satisfaction surveys (4 per year)
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="buttons">
+            <button type="submit" class="sign-up enabledSubmit" ng-disabled="userForm.$invalid">Sign up</button>
+          </div>
+        </section>
+
+      </div>
+    </form>
+  </div>
+</div>

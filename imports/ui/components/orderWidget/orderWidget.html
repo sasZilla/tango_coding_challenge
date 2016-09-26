@@ -1,0 +1,24 @@
+<div class="widget order" id="order_widget">
+  <h6 class="sectionHeader">
+    Your order
+  </h6>
+  <h5>{{orderWidget.data.title}}</h5>
+  <img class="order_receipt_phone" src="/static/images/Apple-iPhone-4-White_small@2x.jpg" height="250" width="188" alt="">
+  <ul class="rowedList">
+    <li>
+      Quantity
+      <span class="detail">
+        <div class="selectmenu detailSelect">
+          <select name="quantity" ng-model="orderWidget.quantity">
+            <option ng-repeat="quantity in [1,2,3,4,5,6,7,8,9,10]" value={{quantity}}>{{quantity}}</option>
+          </select>
+        </div>
+        x ${{orderWidget.data.price}}
+      </span>
+    </li>
+    <li>
+      Subtotal
+      <span class="detail" id="order_total">${{orderWidget.quantity * orderWidget.data.price}}</span>
+    </li>
+  </ul>
+</div>

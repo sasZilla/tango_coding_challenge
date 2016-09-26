@@ -1,0 +1,8 @@
+<div class="fieldgroup halfWide">
+  <label for="state">State</label>
+  <div class="selectmenu">
+    <select id="state" name="state" ng-model="countryStates.value">
+      <option ng-repeat="countryState in countryStates.data" value="{{countryState.value}}">{{countryState.name}}</option>
+    </select>
+  </div>
+</div>

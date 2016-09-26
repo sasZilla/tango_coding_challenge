@@ -1,0 +1,221 @@
+<div id="ok" ng-if="billingInfo.completed">
+  <p>Congratulation! You've completed the challenge! Thanks</p>
+</div>
+
+<div class="wrapper order_step">
+  <div class="subSection">
+    <div class="editBilling">
+      <h3>Billing information</h3>
+      <p>
+        This is the info associated with your credit card and must be accurate to continue.
+        <br> Future payments will also be charged to this credit card.
+      </p>
+      <form id="form-billing_info" name="billingForm">
+        <div class="billingSection">
+          <h6 class="sectionHeader">
+            Payment info
+          </h6>
+          <fieldset id="creditCardSelection">
+            <div class="fieldgroup fullWide">
+              <div class="payMethodList selected" id="payMethodList_credtCard">
+                <label class="payMethod" ng-class="{'active': billingInfo.billing.payMethod=='american_express'}" for="payMethod_american_express">
+                  <input type="radio" name="pay_method" ng-model="billingInfo.billing.payMethod" value="american_express" id="payMethod_american_express" class="choice">
+                  <span class="payMethodIcon">
+                    <svg role="img" class=" iconSvg" title="American Express" width="45" height="45">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/icons.svg#amex"></use>
+                    </svg>
+                  </span>
+                </label>
+                <label class="payMethod" ng-class="{'active': billingInfo.billing.payMethod=='discover'}" for="payMethod_discover">
+                  <input type="radio" name="pay_method" ng-model="billingInfo.billing.payMethod" value="discover" id="payMethod_discover" class="choice">
+                  <span class="payMethodIcon">
+                    <svg role="img" class=" iconSvg" title="Discover" width="45" height="45">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/icons.svg#discover"></use>
+                    </svg>
+                  </span>
+                </label>
+                <label class="payMethod" ng-class="{'active': billingInfo.billing.payMethod=='mastercard'}" for="payMethod_mastercard">
+                  <input type="radio" name="pay_method" ng-model="billingInfo.billing.payMethod" value="mastercard" id="payMethod_mastercard" class="choice">
+                  <span class="payMethodIcon">
+                    <svg role="img" class=" iconSvg" title="MasterCard" width="45" height="45">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/icons.svg#mastercard"></use>
+                    </svg>
+                  </span>
+                </label>
+                <label class="payMethod" ng-class="{'active': billingInfo.billing.payMethod=='visa'}" for="payMethod_visa">
+                  <input type="radio" name="pay_method" ng-model="billingInfo.billing.payMethod" value="visa" id="payMethod_visa" class="choice">
+                  <span class="payMethodIcon">
+                    <svg role="img" class=" iconSvg" title="Visa" width="45" height="45">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/icons.svg#visa"></use>
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="payMethodList">- or -</div>
+              <div class="payMethodList" id="payMethodList_amazon">
+                <label class="payMethod" ng-class="{'active': billingInfo.billing.payMethod=='amazon'}">
+                  <input type="radio" name="pay_method" ng-model="billingInfo.billing.payMethod" value="amazon" id="payMethod_amazon" class="choice">
+                  <span class="payMethodIcon" id="AmazonPayButton">
+                  <img class="payMethod__icon" src="https://images-na.ssl-images-amazon.com/images/G/01/EP/offAmazonPayments/us/live/prod/image/lwa/lightgray/small/PwA_2x.png" style="cursor: pointer; width: 148px; height: 30px;" id="OffAmazonPaymentsWidgets0" devicepixelratio="2"></span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+          <!-- creditCardSelection -->
+          <fieldset id="creditCardInfo">
+            <div class="fieldgroup fullWide">
+              <label for="cardholderName">
+                Full name
+                <span class="note">(as it appears on card)</span>
+              </label>
+              <input type="text"
+                name="cardholderName"
+                ng-model="billingInfo.billing.cardholderName"
+                id="cardholderName"
+                required>
+              <div ng-show='billingForm.cardholderName.$dirty && billingForm .cardholderName.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="billingForm.cardholderName.$error.required">This field is required.</div>
+              </div>
+            </div>
+            <div class="fieldgroup fullWide">
+              <label for="cardNumber">Credit card number</label>
+              <div class="fieldIconContainer" id="creditCardFieldIcon">
+                <input type="text"
+                  name="cardNumber"
+                  ng-model="billingInfo.billing.cardNumber"
+                  id="cardNumber"
+                  ng-minlength="15"
+                  ng-maxlength="16"
+                  required>
+                <div ng-show='billingForm.cardNumber.$dirty && billingForm.cardNumber.$invalid' class="validation-advice animate-show" role="alert">
+                  <div ng-show="billingForm.cardNumber.$error.required">This field is required.</div>
+                  <div ng-show="(billingForm.cardNumber.$error.minlength || billingForm.cardNumber.$error.maxlength)">Credit card number must be at 15 or 16 digits</div>
+                </div>
+              </div>
+            </div>
+            <div class="fieldgroup twoThirdsWide multiField">
+              <div class="wrapField">
+                <expiration-months value="billingInfo.billing.expirationMonths"></expiration-months>
+                <expiration-years value="billingInfo.billing.expirationYears"></expiration-years>
+              </div>
+              <div id="advice-multi-date-input_undefined" class="validation-advice" ng-hide="billingInfo.isValidDate">Please select a valid expiration date</div>
+            </div>
+            <div class="fieldgroup">
+              <label for="cardCvv">
+                Security number
+                <span id="card_cvv_hint" class="note">(cvv)</span>
+              </label>
+              <div class="fieldIconContainer" id="cvvFieldIcon">
+                <input type="text"
+                  name="cardCvv"
+                  ng-model="billingInfo.billing.cardCvv"
+                  id="cardCvv"
+                  ng-minlength="3"
+                  ng-maxlength="4"
+                  required>
+                <div ng-show='billingForm.cardCvv.$dirty && billingForm.cardCvv.$invalid' class="validation-advice animate-show" role="alert">
+                  <div ng-show="billingForm.cardCvv.$error.required">This field is required.</div>
+                  <div ng-show="(billingForm.cardCvv.$error.minlength || billingForm.cardCvv.$error.maxlength)">Card security number must be 3 digits for Visa, MasterCard and Discover Card or 4 digits AMEX</div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <!-- creditCardInfo -->
+          <div class="fieldgroup fullWide" id="amazonInfo" style="display: none;">
+            <div id="AmazonLoginButton"></div>
+            <div id="walletWidgetDiv"></div>
+            <div id="consentWidgetDiv"></div>
+          </div>
+          <!-- amazonInfo -->
+        </div>
+        <div class="billingSection" id="billingAddressSection">
+          <h6 class="sectionHeader">
+            Billing address
+          </h6>
+          <fieldset>
+            <div class="billingNameField fieldgroup halfWide">
+              <label for="firstName">First name</label>
+              <input
+                type="text"
+                name="firstName"
+                ng-model="billingInfo.user.firstName"
+                required
+              >
+              <div ng-show='billingForm.firstName.$dirty && billingForm.firstName.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="billingForm.firstName.$error.required">This field is required.</div>
+              </div>
+            </div>
+            <div class="billingNameField fieldgroup halfWide">
+              <label for="lastName">Last name</label>
+              <input
+                type="text"
+                name="lastName"
+                ng-model="billingInfo.user.lastName"
+                required
+              >
+              <div ng-show='billingForm.lastName.$dirty && billingForm.lastName.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="billingForm.lastName.$error.required">This field is required.</div>
+              </div>
+            </div>
+            <div class="fieldgroup fullWide">
+              <label for="address">Address</label>
+              <input
+                type="text"
+                name="address"
+                ng-model="billingInfo.address.address"
+                required
+              >
+              <div ng-show='billingInfo.address.address.$dirty && billingInfo.address.address.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="billingInfo.address.address.$error.required">This field is required.</div>
+              </div>
+            </div>
+            <div class="clear"></div>
+            <div class="fieldgroup halfWide">
+              <label for="city">City</label>
+              <input
+                type="text"
+                name="city"
+                ng-model="billingInfo.address.city"
+                required
+              >
+              <div ng-show='billingForm.city.$dirty && billingForm.city.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="billingForm.city.$error.required">This field is required.</div>
+              </div>
+            </div>
+
+            <country-states value="billingInfo.address.countryState"></country-states>
+
+            <div class="fieldgroup halfWide">
+              <label for="postalCode">Zip code</label>
+              <input
+                type="text"
+                name="postalCode"
+                ng-model="billingInfo.address.postalCode"
+                required
+              >
+              <div ng-show='billingForm.postalCode.$dirty && billingForm.postalCode.$invalid' class="validation-advice animate-show" role="alert">
+                <div ng-show="billingForm.postalCode.$error.required">This field is required.</div>
+              </div>
+            </div>
+            <div class="fieldgroup halfWide">
+              <label for="country">Country</label>
+              <div class="selectmenu">
+                <select id="country" name="country" ng-model="billingInfo.address.country">
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                </select>
+              </div>
+            </div>
+            <div class="countryMsg_exchangeRate" style="display:none">
+              Ting offers cell phone service in the US. Please make sure you
+              <a href="https://help.ting.com/hc/en-us/articles/218627817-FAQ-Credit-Cards-and-Payment" target="_blank">understand the limitations</a> of a Canadian credit card.
+            </div>
+          </fieldset>
+        </div>
+        <div class="buttons">
+          <button ng-click="billingInfo.submit(billingInfo.billing, billingInfo.user, billingInfo.address)" ng-disabled="billingForm.$invalid || !billingInfo.isValidDate" type="submit" name="done" id="submitBilling" class="enabledSubmit">Continue</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
