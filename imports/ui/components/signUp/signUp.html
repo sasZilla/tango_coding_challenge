@@ -56,7 +56,7 @@
               <input type="tel"
                 name="phone"
                 ng-model="signUp.newUser.phone"
-                ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
+                ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/"
                 required />
 
               <div ng-show='userForm.phone.$dirty && userForm.phone.$invalid' class="validation-advice animate-show" role="alert">
