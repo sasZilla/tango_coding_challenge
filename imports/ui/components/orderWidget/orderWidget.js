@@ -1,21 +1,28 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import { Storage } from '../../services/storage.factory.js';
 
 import template from './orderWidget.html';
 
 class OrderWidget {
-  constructor($scope, $reactive) {
+  constructor($scope, $reactive, Storage, $state) {
     'ngInject';
 
     $reactive(this).attach($scope);
 
     this.quantity = '1';
 
-    this.data = {
-      title: 'iPhone 4s White',
-      img: 'https://static.ting.com/shared/Apple-iPhone-4-White_small@2x.jpg',
-      price: 138
-    };
+    this._storage = Storage;
+    let self = this;
+    $scope.$watch(function(){
+      return $state.current.name === 'resourceShowPage' && $state.current.name === 'searchIndex'
+    }, function(isSearch) {
+      if (!isSearch) {
+        self._storage.getUser().then(function(user) {
+          self.data = user.order;
+        });
+      }
+    });
   }
 }
 
@@ -27,4 +34,4 @@ export default angular.module(name, [
   template,
   controllerAs: name,
   controller: OrderWidget
-});
+}).service('Storage', Storage);

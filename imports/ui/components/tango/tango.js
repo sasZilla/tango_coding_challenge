@@ -10,8 +10,22 @@ import { name as OrderWidget } from '../orderWidget/orderWidget';
 import { name as SignUp } from '../signUp/signUp';
 import { name as ServAddress } from '../servAddress/servAddress';
 import { name as BillingInfo } from '../billingInfo/billingInfo';
+import { name as SearchIndex } from '../searchIndex/searchIndex';
+import { name as ResourceShowPage } from '../resourceShowPage/resourceShowPage';
 
-class Tango {}
+class Tango {
+  constructor($scope, $reactive, $state) {
+    'ngInject';
+    $reactive(this).attach($scope);
+    let self = this;
+    self.showOrder = false;
+    $scope.$watch(function(){
+      return $state.current.name !== 'resourceShowPage' && $state.current.name !== 'searchIndex'
+    }, function(isntSearchFlow) {
+      self.showOrder = isntSearchFlow;
+    });
+  }
+}
 
 const name = 'tango';
 
@@ -24,7 +38,9 @@ export default angular.module(name, [
   OrderWidget,
   SignUp,
   ServAddress,
-  BillingInfo
+  BillingInfo,
+  SearchIndex,
+  ResourceShowPage
 ]).component(name, {
   template,
   controllerAs: 'tango',
@@ -36,5 +52,5 @@ function config($locationProvider, $urlRouterProvider) {
 
   $locationProvider.html5Mode(true);
 
-  $urlRouterProvider.otherwise('/signUp');
+  $urlRouterProvider.otherwise('/searchIndex');
 }

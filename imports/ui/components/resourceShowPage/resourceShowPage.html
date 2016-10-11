@@ -1,0 +1,84 @@
+<div class="wrapper flush">
+    <div class="wrapperSection" id="deviceDetailsHeader">
+      <div class="viewer viewerDisabled" id="mainViewer">
+        <ul class="viewPanel" id="mainPanel">
+          <li class="active">
+            <img src={{resourceShowPage.data.src}} alt={{resourceShowPage.data.title}} height="350">
+          </li>
+        </ul>
+      </div>
+      <div class="detailsWrapper">
+        <h2 class="marketingHeader">{{resourceShowPage.data.title}}</h2>
+        <p class="marketing">{{resourceShowPage.data.marketing}}</p>
+        <div class="deviceDetail">
+          <ul class="deviceIcons">
+            <li class="deviceIcon">
+              <svg role="img" class=" iconSvg" title="ios" width="18" height="18">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/icons.svg#ios"></use>
+              </svg>
+            </li>
+            <li class="deviceIcon">
+              <span class="gen third">3G</span>
+            </li>
+          </ul>
+        </div>
+        <div id="productSection">
+          <div class="touts">
+            <form class="productBlock block alt cdma">
+              <p class="toutHead">
+                cdma
+                <button class="trigger networkHelpTrigger" type="button">?</button><br>
+                From Ting
+              </p>
+              <span class="head main">
+                ${{resourceShowPage.data.price}}
+              </span>
+              <span class="productDetail subDetail ">Ships today</span>
+              <button ng-click="resourceShowPage.submit()" type="submit" class="enabledSubmit">Buy</button>
+              <p class="productDetail">
+                  SIM card not required
+              </p>
+            </form>
+
+                <div class="productBlock unavailable block gsm alt">
+                  <p class="toutHead">
+                    gsm
+                    <button class="trigger networkHelpTrigger" type="button">?</button><br>
+                    From Ting
+                  </p>
+                  <p>
+                    We do not currently have any devices available for this selection.
+                  </p>
+                </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tabbedSection" class="section">
+        <ul class="tabNav">
+          <li class="tab active">
+            Overview
+          </li>
+        </ul>
+
+        <div class="tabContent blocks" style="display: flex;">
+          <div class="block three double">
+            <h4>Description</h4>
+            <p>{{resourceShowPage.data.description}}</p>
+            <div ng-if="resourceShowPage.data.notIncluded">
+              <h4>Not included</h4>
+              <p>{{resourceShowPage.data.notIncluded}}</p>
+            </div>
+          </div>
+          <div class="block three" ng-if="resourceShowPage.data.features">
+          <h4>Features</h4>
+            <dl ng-repeat="feature in resourceShowPage.data.features">
+              <dt>{{feature.name}}</dt>
+              <dd>{{feature.description}}</dd>
+            </dl>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>

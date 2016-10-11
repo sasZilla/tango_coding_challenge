@@ -1,0 +1,24 @@
+<div class="wrapper flush" id="devices">
+  <div class="wrapperSection">
+    <toggle-filters opened="searchIndex.openedFilters"></toggle-filters>
+    <section class="">
+      <search-filters opened="searchIndex.openedFilters" filters="filters" order="order"></search-filters>
+
+      <div id="deviceContainer" class="devices" ng-class="searchIndex.openedFilters ? 'filterOpen' : 'filterClosed'">
+        <search-items items="searchIndex.data" filters="filters" order="order"></search-items>
+
+        <div class="personalShopper">
+          <img src="https://static.ting.com/shared/personal-shopper_small@2x.jpg" alt="Ting Personal Shopper" width="186" height="269">
+          <h3>Didn't find the device you want?</h3>
+          <p class="levelFour marketingHeader">
+            The Ting personal shopper can turn up the right device for you, whether or not you know what you're looking for.
+          </p>
+          <a class="button" href="https://ting.com/personal_shopper">Learn more</a>
+        </div>
+      </div>
+    </section>
+    <div class="clear"></div>
+  </div>
+
+  <search-faq></search-faq>
+</div>

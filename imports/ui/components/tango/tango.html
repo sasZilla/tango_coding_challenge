@@ -2,9 +2,9 @@
 
 <div id="background">
   <div class="container" id="content" class="ting_page">
-    <breadcrumb></breadcrumb>
+    <breadcrumb ng-if="tango.showOrder"></breadcrumb>
     <div ui-view=""></div>
-    <order-widget></order-widget>
+    <order-widget ng-if="tango.showOrder"></order-widget>
   </div>
 </div>
 

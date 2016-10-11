@@ -1,0 +1,17 @@
+<button id="toggleFilters" class="filterToggle" ng-class="toggleFilters.opened?'close':'open'" type="button" ng-click="toggleFilters.toggle()">
+  <svg role="img" class="close desktopOnly iconSvg" title="toggle view filter" width="17" height="17">
+    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/icons.svg#arrowLeft"></use>
+  </svg>
+  <svg role="img" class="open desktopOnly iconSvg" title="toggle view filter" width="17" height="17">
+    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/icons.svg#arrowRight"></use>
+  </svg>
+  <span class="mobileOnly">
+    Sort and filter
+    <svg role="img" class="close iconSvg" title="toggle view filter" width="11" height="11">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/icons.svg#pointDown"></use>
+    </svg>
+    <svg role="img" class="open iconSvg" title="toggle view filter" width="11" height="11">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/images/icons.svg#pointUp"></use>
+    </svg>
+  </span>
+</button>
