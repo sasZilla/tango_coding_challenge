@@ -1,0 +1,29 @@
+<ul id="deviceListing">
+  <li id="sim" class="device" ng-repeat="item in searchItems.items | searchFilter:searchItems.filters | searchOrder:searchItems.order">
+    <div class="deviceSticker listing new" ng-show="item.isJustAdded">Just added</div>
+    <div class="deviceSticker listing sale" ng-if="item.sale">
+        Save
+        <span class="price">${{item.savedPrice}}</span>
+      </div>
+
+    <a ng-href="/resourceShowPage/{{item.id}}" class="deviceImage">
+      <img alt={{item.title}} src={{item.src}} width="188" height="250">
+      <div class="ctaButton">
+        <button type="button">View details</button>
+      </div>
+    </a>
+    <p class="deviceName head levelFive">
+      <a ng-href="/resourceShowPage/{{item.id}}">
+        {{item.title}}
+      </a>
+    </p>
+    <p class="devicePrice head levelFive ">
+      from ${{item.price}}
+    </p>
+    <p class="deviceFinancing head"></p>
+    <div class="subDetails">
+      <span class="subDetail">{{item.condition}}</span>
+      <span class="subDetail">{{item.network}}</span>
+    </div>
+  </li>
+</ul>

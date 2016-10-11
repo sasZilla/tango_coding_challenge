@@ -1,0 +1,18 @@
+<div class="filterContainer" ng-class="{'closed':!searchFilters.opened}" id="filterBlock">
+  <div class="filterBlock open">
+    <div class="fieldgroup fullWide">
+      <div class="selectmenu">
+        <select ng-model="searchFilters.order" class="deviceDrillDown">
+          <option ng-repeat="sortFilter in searchFilters.sortFilterOptions" value="{{sortFilter.value}}">{{sortFilter.title}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div ng-repeat="filter in searchFilters.filters" class="fieldgroup fullWide">
+      <p class="label" ng-if="filter.title">{{filter.title}}</p>
+      <label class="checkbox" ng-repeat="option in filter.options">
+        <input type="checkbox" ng-model="option.selected" ng-checked="option.selected" class="deviceDrillDown">{{option.value}}
+      </label>
+    </div>
+  </div>
+</div>
